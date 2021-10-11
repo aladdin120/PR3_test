@@ -1,5 +1,7 @@
 import unittest
 from main import ChatServer
+from GUI import GUI
+from tkinter import Tk
 import socket
 
 
@@ -37,6 +39,18 @@ class MySocketTest(unittest.TestCase):
         self.serv.close()
         self.serv = None
 
+
+class MyGuiTest(unittest.TestCase):
+    def setUp(self):
+        self.root = Tk()
+        self.gui = GUI(self.root)
+
+    def TestTitle(self):
+        self.assertEqual(self.gui.root.title, "Socket Chat")
+
+    def tearDown(self):
+        self.gui.client_socket.close()
+        self.gui.client_socket = None
 
 
 if __name__ == '__main__':
