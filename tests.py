@@ -1,5 +1,5 @@
 import unittest
-
+from main import ChatServer
 import socket
 
 
@@ -29,7 +29,13 @@ class SocketUDPTest(unittest.TestCase):
         self.serv = None
 
 
+class MySocketTest(unittest.TestCase):
+    def setUp(self):
+        self.serv = ChatServer()
 
+    def tearDown(self):
+        self.serv.close()
+        self.serv = None
 
 
 
